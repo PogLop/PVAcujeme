@@ -72,5 +72,23 @@ class Klient
 
 public static void Main()
 {
+        // 1) Klient B vytvoří RSA klíče
+        Klient klientB = new Klient(generujRSA: true);
 
+        // 2) Klient A vytvoří AES klíč a zašifruje ho pomocí veřejného klíče B
+        Klient klientA = new Klient();
+        var (zasifrovanyAES, iv) = klientA.SifrujAESKlicPro(klientB.VerejnyKlic);
+
+        // 3) Klient B dešifruje AES klíč
+        klientB.PrijmiAESKlic(zasifrovanyAES, iv);
+
+        // 4) Klient B zašifruje zprávu pomocí AES a pošle ji A
+        string zprava = "Tajná zpráva: Ahoj kliente A!";
+        byte[] sifrovanaZprava = klientB.SifrujZpravu(zprava);
+
+        // 5) Klient A dešifruje zprávu a vypíše ji
+        string desifrovano = klientA.DesifrujZpravu(sifrovanaZprava);
+
+        Console.WriteLine("Zpráva od klienta B po dešifrování:");
+        Console.WriteLine(desifrovano);
 }
