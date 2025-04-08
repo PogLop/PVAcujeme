@@ -19,10 +19,14 @@ class Klient
 
     public void PrijmiAESKlic(byte[] zasifrovanyKlic, byte[] iv)
     {
-        rsa = new RSACryptoServiceProvider();
-        rsa.FromXmlString(privatniKlic);
-        aesKlic = rsa.Decrypt(zasifrovanyKlic, false);
-        aesIV = iv;
+    rsa = new RSACryptoServiceProvider();
+    rsa.FromXmlString(privatniKlic);
+    try { aesKlic = rsa.Decrypt(zasifrovanyKlic, false); }
+    catch (Exception e) { Console.WriteLine(e.ToString()); Environment.Exit(1); }
+    
+
+    aesIV = iv;
+    
     }
 
     // Klient A: zašifrování AES klíče pro klienta B
