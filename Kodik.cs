@@ -77,7 +77,7 @@ public static void Main()
 
         // 2) Klient A vytvoří AES klíč a zašifruje ho pomocí veřejného klíče B
         Klient klientA = new Klient();
-        var (zasifrovanyAES, iv) = klientA.SifrujAESKlicPro(klientB.VerejnyKlic);
+        var (zasifrovanyAES, iv) = klientA.SifrujAESKlic(klientB.VerejnyKlic);
 
         // 3) Klient B dešifruje AES klíč
         klientB.PrijmiAESKlic(zasifrovanyAES, iv);
