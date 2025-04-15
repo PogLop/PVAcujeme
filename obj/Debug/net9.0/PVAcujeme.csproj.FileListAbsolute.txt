@@ -13,3 +13,12 @@
 /home/josh/School/Code/PVAcujeme/obj/Debug/net9.0/PVAcujeme.pdb
 /home/josh/School/Code/PVAcujeme/obj/Debug/net9.0/PVAcujeme.genruntimeconfig.cache
 /home/josh/School/Code/PVAcujeme/obj/Debug/net9.0/ref/PVAcujeme.dll
+/home/mario/Documents/School/3K/Pva/PVAcujeme/obj/Debug/net9.0/PVAcujeme.csproj.AssemblyReference.cache
+/home/mario/Documents/School/3K/Pva/PVAcujeme/obj/Debug/net9.0/PVAcujeme.GeneratedMSBuildEditorConfig.editorconfig
+/home/mario/Documents/School/3K/Pva/PVAcujeme/obj/Debug/net9.0/PVAcujeme.AssemblyInfoInputs.cache
+/home/mario/Documents/School/3K/Pva/PVAcujeme/obj/Debug/net9.0/PVAcujeme.AssemblyInfo.cs
+/home/mario/Documents/School/3K/Pva/PVAcujeme/obj/Debug/net9.0/PVAcujeme.csproj.CoreCompileInputs.cache
+/home/mario/Documents/School/3K/Pva/PVAcujeme/obj/Debug/net9.0/PVAcujeme.sourcelink.json
+/home/mario/Documents/School/3K/Pva/PVAcujeme/obj/Debug/net9.0/PVAcujeme.dll
+/home/mario/Documents/School/3K/Pva/PVAcujeme/obj/Debug/net9.0/refint/PVAcujeme.dll
+/home/mario/Documents/School/3K/Pva/PVAcujeme/obj/Debug/net9.0/PVAcujeme.pdb

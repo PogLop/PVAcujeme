@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "WxSod4gomyQ=",
+  "dgSpecHash": "p+AMjOVgM5o=",
   "success": true,
-  "projectFilePath": "/home/josh/School/Code/PVAcujeme/PVAcujeme.csproj",
+  "projectFilePath": "/home/mario/Documents/School/3K/Pva/PVAcujeme/PVAcujeme.csproj",
   "expectedPackageFiles": [
-    "/home/josh/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.3/microsoft.aspnetcore.app.ref.9.0.3.nupkg.sha512"
+    "/home/mario/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
+    "/home/mario/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.3/microsoft.aspnetcore.app.ref.9.0.3.nupkg.sha512"
   ],
   "logs": []
 }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/josh/School/Code/PVAcujeme/PVAcujeme.csproj": {}
+    "/home/mario/Documents/School/3K/Pva/PVAcujeme/PVAcujeme.csproj": {}
   },
   "projects": {
-    "/home/josh/School/Code/PVAcujeme/PVAcujeme.csproj": {
+    "/home/mario/Documents/School/3K/Pva/PVAcujeme/PVAcujeme.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/josh/School/Code/PVAcujeme/PVAcujeme.csproj",
+        "projectUniqueName": "/home/mario/Documents/School/3K/Pva/PVAcujeme/PVAcujeme.csproj",
         "projectName": "PVAcujeme",
-        "projectPath": "/home/josh/School/Code/PVAcujeme/PVAcujeme.csproj",
-        "packagesPath": "/home/josh/.nuget/packages/",
-        "outputPath": "/home/josh/School/Code/PVAcujeme/obj/",
+        "projectPath": "/home/mario/Documents/School/3K/Pva/PVAcujeme/PVAcujeme.csproj",
+        "packagesPath": "/home/mario/.nuget/packages/",
+        "outputPath": "/home/mario/Documents/School/3K/Pva/PVAcujeme/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/josh/.nuget/NuGet/NuGet.Config"
+          "/home/mario/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -43,6 +43,12 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
