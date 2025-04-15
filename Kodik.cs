@@ -23,10 +23,10 @@ namespace Program {
 
         public void PrijmiAESKlic(byte[] zasifrovanyKlic, byte[] iv)
         {
-        rsa = new RSACryptoServiceProvider();
-        rsa.FromXmlString(privatniKlic);
-        try { aesKlic = rsa.Decrypt(zasifrovanyKlic, false); }
-        catch (Exception e) { Console.WriteLine(e.ToString()); Environment.Exit(1); }
+            rsa = new RSACryptoServiceProvider();
+            rsa.FromXmlString(privatniKlic);
+            try { aesKlic = rsa.Decrypt(zasifrovanyKlic, false); }
+            catch (Exception e) { Console.WriteLine(e.ToString()); Environment.Exit(1); }
         
 
         aesIV = iv;
