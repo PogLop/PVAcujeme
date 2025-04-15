@@ -1,0 +1,15 @@
+/home/josh/School/Code/PVAcujeme/obj/Debug/net9.0/PVAcujeme.GeneratedMSBuildEditorConfig.editorconfig
+/home/josh/School/Code/PVAcujeme/obj/Debug/net9.0/PVAcujeme.AssemblyInfoInputs.cache
+/home/josh/School/Code/PVAcujeme/obj/Debug/net9.0/PVAcujeme.AssemblyInfo.cs
+/home/josh/School/Code/PVAcujeme/obj/Debug/net9.0/PVAcujeme.csproj.CoreCompileInputs.cache
+/home/josh/School/Code/PVAcujeme/obj/Debug/net9.0/PVAcujeme.sourcelink.json
+/home/josh/School/Code/PVAcujeme/bin/Debug/net9.0/PVAcujeme
+/home/josh/School/Code/PVAcujeme/bin/Debug/net9.0/PVAcujeme.deps.json
+/home/josh/School/Code/PVAcujeme/bin/Debug/net9.0/PVAcujeme.runtimeconfig.json
+/home/josh/School/Code/PVAcujeme/bin/Debug/net9.0/PVAcujeme.dll
+/home/josh/School/Code/PVAcujeme/bin/Debug/net9.0/PVAcujeme.pdb
+/home/josh/School/Code/PVAcujeme/obj/Debug/net9.0/PVAcujeme.dll
+/home/josh/School/Code/PVAcujeme/obj/Debug/net9.0/refint/PVAcujeme.dll
+/home/josh/School/Code/PVAcujeme/obj/Debug/net9.0/PVAcujeme.pdb
+/home/josh/School/Code/PVAcujeme/obj/Debug/net9.0/PVAcujeme.genruntimeconfig.cache
+/home/josh/School/Code/PVAcujeme/obj/Debug/net9.0/ref/PVAcujeme.dll

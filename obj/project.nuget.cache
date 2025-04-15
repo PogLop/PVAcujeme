@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "WxSod4gomyQ=",
+  "success": true,
+  "projectFilePath": "/home/josh/School/Code/PVAcujeme/PVAcujeme.csproj",
+  "expectedPackageFiles": [
+    "/home/josh/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.3/microsoft.aspnetcore.app.ref.9.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
