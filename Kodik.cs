@@ -2,77 +2,82 @@ using System.Security.Cryptography;
 using System.Text;
 
 namespace Program {
-    class Klient
+    class Client
     {
         // RSA
         private RSACryptoServiceProvider rsa;
-        public string VerejnyKlic => rsa.ToXmlString(false); // veřejný klíč (jen ke čtení)
-        private string privatniKlic => rsa.ToXmlString(true); // privátní klíč (jen vnitřní)
+        public string PublicKey => rsa.ToXmlString(false); // public key (read-only)
+        private string PrivateKey => rsa.ToXmlString(true); // private key (internal use)
 
         // AES
-        private byte[] aesKlic;
+        private byte[] aesKey;
         private byte[] aesIV;
 
-        public Klient(bool generujRSA = false)
+        public Client(bool generateRSA = false)
         {
-            if (generujRSA)
+            if (generateRSA)
             {
                 rsa = new RSACryptoServiceProvider(2048);
             }
         }
 
-        public void PrijmiAESKlic(byte[] zasifrovanyKlic, byte[] iv)
+        public void ReceiveAESKey(byte[] encryptedKey, byte[] iv)
         {
-        rsa = new RSACryptoServiceProvider();
-        rsa.FromXmlString(privatniKlic);
-        try { aesKlic = rsa.Decrypt(zasifrovanyKlic, false); }
-        catch (Exception e) { Console.WriteLine(e.ToString()); Environment.Exit(1); }
-        
+            rsa = new RSACryptoServiceProvider();
+            rsa.FromXmlString(PrivateKey);
+            try 
+            { 
+                aesKey = rsa.Decrypt(encryptedKey, false); 
+            }
+            catch (Exception e) 
+            { 
+                Console.WriteLine(e.ToString()); 
+                Environment.Exit(1); 
+            }
 
-        aesIV = iv;
-        
+            aesIV = iv;
         }
 
-        // Klient A: zašifrování AES klíče pro klienta B
-        public (byte[] zasifrovanyKlic, byte[] iv) SifrujAESKlic(string verejnyKlicB)
+        // Client A: encrypt AES key for Client B
+        public (byte[] encryptedKey, byte[] iv) EncryptAESKey(string publicKeyB)
         {
             using (Aes aes = Aes.Create())
             {
                 aes.GenerateKey();
                 aes.GenerateIV();
-                aesKlic = aes.Key;
+                aesKey = aes.Key;
                 aesIV = aes.IV;
 
                 RSACryptoServiceProvider rsaB = new RSACryptoServiceProvider();
-                rsaB.FromXmlString(verejnyKlicB);
+                rsaB.FromXmlString(publicKeyB);
 
-                byte[] zasifrovanyKlic = rsaB.Encrypt(aesKlic, false);
-                return (zasifrovanyKlic, aesIV);
+                byte[] encryptedKey = rsaB.Encrypt(aesKey, false);
+                return (encryptedKey, aesIV);
             }
         }
 
-        // Šifrování zprávy pomocí AES
-        public byte[] SifrujZpravu(string zprava)
+        // Encrypt message using AES
+        public byte[] EncryptMessage(string message)
         {
             using (Aes aes = Aes.Create())
             {
-                aes.Key = aesKlic;
+                aes.Key = aesKey;
                 aes.IV = aesIV;
                 ICryptoTransform encryptor = aes.CreateEncryptor();
-                byte[] plainBytes = Encoding.UTF8.GetBytes(zprava);
+                byte[] plainBytes = Encoding.UTF8.GetBytes(message);
                 return encryptor.TransformFinalBlock(plainBytes, 0, plainBytes.Length);
             }
         }
 
-        // Dešifrování zprávy pomocí AES
-        public string DesifrujZpravu(byte[] zasifrovanaZprava)
+        // Decrypt message using AES
+        public string DecryptMessage(byte[] encryptedMessage)
         {
             using (Aes aes = Aes.Create())
             {
-                aes.Key = aesKlic;
+                aes.Key = aesKey;
                 aes.IV = aesIV;
                 ICryptoTransform decryptor = aes.CreateDecryptor();
-                byte[] decryptedBytes = decryptor.TransformFinalBlock(zasifrovanaZprava, 0, zasifrovanaZprava.Length);
+                byte[] decryptedBytes = decryptor.TransformFinalBlock(encryptedMessage, 0, encryptedMessage.Length);
                 return Encoding.UTF8.GetString(decryptedBytes);
             }
         }
@@ -81,26 +86,25 @@ namespace Program {
     public static class Program {
         public static void Main()
         {
-                // 1) Klient B vytvoří RSA klíče
-                Klient klientB = new Klient(true);
+            // 1) Client B generates RSA keys
+            Client clientB = new Client(true);
 
-                // 2) Klient A vytvoří AES klíč a zašifruje ho pomocí veřejného klíče B
-                Klient klientA = new Klient();
-                var (zasifrovanyAES, iv) = klientA.SifrujAESKlic(klientB.VerejnyKlic);
+            // 2) Client A generates AES key and encrypts it using Client B's public key
+            Client clientA = new Client();
+            var (encryptedAES, iv) = clientA.EncryptAESKey(clientB.PublicKey);
 
-                // 3) Klient B dešifruje AES klíč
-                klientB.PrijmiAESKlic(zasifrovanyAES, iv);
+            // 3) Client B decrypts AES key
+            clientB.ReceiveAESKey(encryptedAES, iv);
 
-                // 4) Klient B zašifruje zprávu pomocí AES a pošle ji A
-                string zprava = "Tajná zpráva: Ahoj kliente A!";
-                byte[] sifrovanaZprava = klientB.SifrujZpravu(zprava);
+            // 4) Client B encrypts message using AES and sends it to A
+            string message = "Secret message: Hello Client A!";
+            byte[] encryptedMessage = clientB.EncryptMessage(message);
 
-                // 5) Klient A dešifruje zprávu a vypíše ji
-                string desifrovano = klientA.DesifrujZpravu(sifrovanaZprava);
+            // 5) Client A decrypts the message and prints it
+            string decrypted = clientA.DecryptMessage(encryptedMessage);
 
-                Console.WriteLine("Zpráva od klienta B po dešifrování:");
-                Console.WriteLine(desifrovano);
+            Console.WriteLine("Message from Client B after decryption:");
+            Console.WriteLine(decrypted);
         }
     }
 }
-
