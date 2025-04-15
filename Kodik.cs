@@ -5,41 +5,38 @@ namespace Program {
     class Client
     {
         // RSA
-        private RSACryptoServiceProvider rsa;
-        public string PublicKey => rsa.ToXmlString(false); // public key (read-only)
-        private string PrivateKey => rsa.ToXmlString(true); // private key (internal use)
+        public byte[] publicKey;
+        private byte[] privateKey;
 
         // AES
         private byte[] aesKey;
         private byte[] aesIV;
 
-        public Client(bool generateRSA = false)
+        const int KEY_LENGTH = 2048;
+        RSAEncryptionPadding PADDING = RSAEncryptionPadding.Pkcs1;
+
+        public Client()
         {
-            if (generateRSA)
+            using (var rsa = RSA.Create(KEY_LENGTH))
             {
-                rsa = new RSACryptoServiceProvider(2048);
+                publicKey = rsa.ExportRSAPublicKey();
+                privateKey = rsa.ExportRSAPrivateKey();
             }
         }
 
         public void ReceiveAESKey(byte[] encryptedKey, byte[] iv)
         {
-            rsa = new RSACryptoServiceProvider();
-            rsa.FromXmlString(PrivateKey);
-            try 
-            { 
-                aesKey = rsa.Decrypt(encryptedKey, false); 
-            }
-            catch (Exception e) 
-            { 
-                Console.WriteLine(e.ToString()); 
-                Environment.Exit(1); 
+            using (var rsa = RSA.Create(KEY_LENGTH))
+            {
+                rsa.ImportRSAPrivateKey(privateKey, out _);
+                aesKey = rsa.Decrypt(encryptedKey, PADDING); 
             }
 
             aesIV = iv;
         }
 
         // Client A: encrypt AES key for Client B
-        public (byte[] encryptedKey, byte[] iv) EncryptAESKey(string publicKeyB)
+        public (byte[] encryptedKey, byte[] iv) EncryptAESKey(byte[] publicKeyB)
         {
             using (Aes aes = Aes.Create())
             {
@@ -48,11 +45,11 @@ namespace Program {
                 aesKey = aes.Key;
                 aesIV = aes.IV;
 
-                RSACryptoServiceProvider rsaB = new RSACryptoServiceProvider();
-                rsaB.FromXmlString(publicKeyB);
-
-                byte[] encryptedKey = rsaB.Encrypt(aesKey, false);
-                return (encryptedKey, aesIV);
+                using (var rsa = RSA.Create(KEY_LENGTH)) {
+                    rsa.ImportRSAPublicKey(publicKeyB, out _);
+                    byte[] encryptedKey = rsa.Encrypt(aesKey, PADDING);
+                    return (encryptedKey, aesIV);
+                }
             }
         }
 
@@ -87,11 +84,11 @@ namespace Program {
         public static void Main()
         {
             // 1) Client B generates RSA keys
-            Client clientB = new Client(true);
+            Client clientB = new Client();
 
             // 2) Client A generates AES key and encrypts it using Client B's public key
             Client clientA = new Client();
-            var (encryptedAES, iv) = clientA.EncryptAESKey(clientB.PublicKey);
+            var (encryptedAES, iv) = clientA.EncryptAESKey(clientB.publicKey);
 
             // 3) Client B decrypts AES key
             clientB.ReceiveAESKey(encryptedAES, iv);
