@@ -13,3 +13,11 @@
 /home/josh/School/Code/PVAcujeme/obj/Debug/net9.0/PVAcujeme.pdb
 /home/josh/School/Code/PVAcujeme/obj/Debug/net9.0/PVAcujeme.genruntimeconfig.cache
 /home/josh/School/Code/PVAcujeme/obj/Debug/net9.0/ref/PVAcujeme.dll
+/Users/poklop/RiderProjects/PVAcujeme/obj/Debug/net9.0/PVAcujeme.GeneratedMSBuildEditorConfig.editorconfig
+/Users/poklop/RiderProjects/PVAcujeme/obj/Debug/net9.0/PVAcujeme.AssemblyInfoInputs.cache
+/Users/poklop/RiderProjects/PVAcujeme/obj/Debug/net9.0/PVAcujeme.AssemblyInfo.cs
+/Users/poklop/RiderProjects/PVAcujeme/obj/Debug/net9.0/PVAcujeme.csproj.CoreCompileInputs.cache
+/Users/poklop/RiderProjects/PVAcujeme/obj/Debug/net9.0/PVAcujeme.sourcelink.json
+/Users/poklop/RiderProjects/PVAcujeme/obj/Debug/net9.0/PVAcujeme.dll
+/Users/poklop/RiderProjects/PVAcujeme/obj/Debug/net9.0/refint/PVAcujeme.dll
+/Users/poklop/RiderProjects/PVAcujeme/obj/Debug/net9.0/PVAcujeme.pdb

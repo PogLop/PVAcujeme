@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WxSod4gomyQ=",
+  "dgSpecHash": "DsnKVTx9Rk8=",
   "success": true,
-  "projectFilePath": "/home/josh/School/Code/PVAcujeme/PVAcujeme.csproj",
-  "expectedPackageFiles": [
-    "/home/josh/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.3/microsoft.aspnetcore.app.ref.9.0.3.nupkg.sha512"
-  ],
+  "projectFilePath": "/Users/poklop/RiderProjects/PVAcujeme/PVAcujeme.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

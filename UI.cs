@@ -24,7 +24,6 @@ namespace UI
             clockTimer.Elapsed += (s, e) => RenderStatusBar();
             clockTimer.Start();
             
-            Console.WriteLine("Simulátor stavu aplikace\n");
             Console.WriteLine("Klávesy:\n[M] Nová zpráva\n[R] Přečíst zprávu\n[C] Přidat kontakt\n[Q] Konec\n");
             
             while (true)
