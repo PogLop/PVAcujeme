@@ -22,6 +22,7 @@ namespace Program {
     public static class Program {
         public static void Main()
         {
+            DB db = new DB();
         }
     }
 }
