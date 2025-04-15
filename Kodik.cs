@@ -15,12 +15,14 @@ namespace Program {
         const int KEY_LENGTH = 2048;
         RSAEncryptionPadding PADDING = RSAEncryptionPadding.Pkcs1;
 
-        public Client()
+        public Client(bool genKey=false)
         {
-            using (var rsa = RSA.Create(KEY_LENGTH))
-            {
-                publicKey = rsa.ExportRSAPublicKey();
-                privateKey = rsa.ExportRSAPrivateKey();
+            if (genKey) {
+                using (var rsa = RSA.Create(KEY_LENGTH))
+                {
+                    publicKey = rsa.ExportRSAPublicKey();
+                    privateKey = rsa.ExportRSAPrivateKey();
+                }
             }
         }
 
@@ -84,7 +86,7 @@ namespace Program {
         public static void Main()
         {
             // 1) Client B generates RSA keys
-            Client clientB = new Client();
+            Client clientB = new Client(true);
 
             // 2) Client A generates AES key and encrypts it using Client B's public key
             Client clientA = new Client();
