@@ -2,7 +2,8 @@ using System.Security.Cryptography;
 using System.Text;
 using UI;
 
-namespace Program {
+namespace Program
+{
     class Client
     {
         // RSA
@@ -30,7 +31,7 @@ namespace Program {
             using (var rsa = RSA.Create(KEY_LENGTH))
             {
                 rsa.ImportRSAPrivateKey(privateKey, out _);
-                aesKey = rsa.Decrypt(encryptedKey, PADDING); 
+                aesKey = rsa.Decrypt(encryptedKey, PADDING);
             }
 
             aesIV = iv;
@@ -46,7 +47,8 @@ namespace Program {
                 aesKey = aes.Key;
                 aesIV = aes.IV;
 
-                using (var rsa = RSA.Create(KEY_LENGTH)) {
+                using (var rsa = RSA.Create(KEY_LENGTH))
+                {
                     rsa.ImportRSAPublicKey(publicKeyB, out _);
                     byte[] encryptedKey = rsa.Encrypt(aesKey, PADDING);
                     return (encryptedKey, aesIV);
@@ -81,7 +83,8 @@ namespace Program {
         }
     }
 
-    public static class Program {
+    public static class Program
+    {
         public static void Main()
         {
             // 1) Client B generates RSA keys
@@ -103,6 +106,20 @@ namespace Program {
 
             Console.WriteLine("Message from Client B after decryption:");
             Console.WriteLine(decrypted);
+            
+            //UI TEST
+            Stuff.Init();
+            Console.WriteLine("Klávesy:\n[M] Nová zpráva\n[R] Přečíst zprávu\n[C] Přidat kontakt\n[Q] Konec\n");
+
+            while (true)
+            {
+                var key = Console.ReadKey(true).Key;
+
+                if (key == ConsoleKey.Q)
+                    break;
+
+                Stuff.ProcessKey(key);
+            }
         }
     }
 }

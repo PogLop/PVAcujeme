@@ -21,3 +21,10 @@
 /Users/poklop/RiderProjects/PVAcujeme/obj/Debug/net9.0/PVAcujeme.dll
 /Users/poklop/RiderProjects/PVAcujeme/obj/Debug/net9.0/refint/PVAcujeme.dll
 /Users/poklop/RiderProjects/PVAcujeme/obj/Debug/net9.0/PVAcujeme.pdb
+/Users/poklop/RiderProjects/PVAcujeme/bin/Debug/net9.0/PVAcujeme
+/Users/poklop/RiderProjects/PVAcujeme/bin/Debug/net9.0/PVAcujeme.deps.json
+/Users/poklop/RiderProjects/PVAcujeme/bin/Debug/net9.0/PVAcujeme.runtimeconfig.json
+/Users/poklop/RiderProjects/PVAcujeme/bin/Debug/net9.0/PVAcujeme.dll
+/Users/poklop/RiderProjects/PVAcujeme/bin/Debug/net9.0/PVAcujeme.pdb
+/Users/poklop/RiderProjects/PVAcujeme/obj/Debug/net9.0/PVAcujeme.genruntimeconfig.cache
+/Users/poklop/RiderProjects/PVAcujeme/obj/Debug/net9.0/ref/PVAcujeme.dll
