@@ -27,7 +27,7 @@ namespace Program {
                     privateKey = rsa.ExportRSAPrivateKey();
                 }
                 Repository.SaveKey(user.uid, Convert.ToBase64String(publicKey));
-                Repository.SaveKey(user.uid, Convert.ToBase64String(privateKey), true);
+                Repository.SaveKey(user.uid, Convert.ToBase64String(privateKey), false);
                 return;
             }
             using (var rsa = RSA.Create(KEY_LENGTH))

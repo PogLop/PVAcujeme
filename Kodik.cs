@@ -34,8 +34,8 @@ namespace Program {
             }
 
             User admin = db.users.Login("admin", "admin");
-            Client client = new Client(admin);
-            byte[] publicKey = Convert.FromBase64String(Repository.LoadKey(admin.uid));
+            Client client = new Client(admin, false);
+            Console.WriteLine(Convert.ToBase64String(client.publicKey));
         }
     }
 }
