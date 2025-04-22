@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/josh/School/Code/PVAcujeme/PVAcujeme.csproj": {}
+    "/Users/poklop/RiderProjects/PVAcujeme/PVAcujeme.csproj": {}
   },
   "projects": {
-    "/home/josh/School/Code/PVAcujeme/PVAcujeme.csproj": {
+    "/Users/poklop/RiderProjects/PVAcujeme/PVAcujeme.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/josh/School/Code/PVAcujeme/PVAcujeme.csproj",
+        "projectUniqueName": "/Users/poklop/RiderProjects/PVAcujeme/PVAcujeme.csproj",
         "projectName": "PVAcujeme",
-        "projectPath": "/home/josh/School/Code/PVAcujeme/PVAcujeme.csproj",
-        "packagesPath": "/home/josh/.nuget/packages/",
-        "outputPath": "/home/josh/School/Code/PVAcujeme/obj/",
+        "projectPath": "/Users/poklop/RiderProjects/PVAcujeme/PVAcujeme.csproj",
+        "packagesPath": "/Users/poklop/.nuget/packages/",
+        "outputPath": "/Users/poklop/RiderProjects/PVAcujeme/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/josh/.nuget/NuGet/NuGet.Config"
+          "/Users/poklop/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -37,8 +37,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+        }
       },
       "frameworks": {
         "net9.0": {
@@ -64,18 +63,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[9.0.3, 9.0.3]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.104/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/Users/poklop/.dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
