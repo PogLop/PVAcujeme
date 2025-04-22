@@ -1242,19 +1242,19 @@
     ]
   },
   "packageFolders": {
-    "/home/josh/.nuget/packages/": {}
+    "/Users/sam/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/josh/School/Code/PVAcujeme/PVAcujeme.csproj",
+      "projectUniqueName": "/Users/sam/docs/skola/pva/pvacujeme/PVAcujeme/PVAcujeme.csproj",
       "projectName": "PVAcujeme",
-      "projectPath": "/home/josh/School/Code/PVAcujeme/PVAcujeme.csproj",
-      "packagesPath": "/home/josh/.nuget/packages/",
-      "outputPath": "/home/josh/School/Code/PVAcujeme/obj/",
+      "projectPath": "/Users/sam/docs/skola/pva/pvacujeme/PVAcujeme/PVAcujeme.csproj",
+      "packagesPath": "/Users/sam/.nuget/packages/",
+      "outputPath": "/Users/sam/docs/skola/pva/pvacujeme/PVAcujeme/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/josh/.nuget/NuGet/NuGet.Config"
+        "/Users/sam/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -1278,7 +1278,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net9.0": {
@@ -1304,18 +1304,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[9.0.3, 9.0.3]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.104/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/Users/sam/.dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   },

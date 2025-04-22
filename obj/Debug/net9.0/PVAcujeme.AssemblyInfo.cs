@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PVAcujeme")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1c1cb3b5cdafd3d02133739ace618fd38ae4f036")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6213a965f5008cd6c26325ba8042e8d1896451b7")]
 [assembly: System.Reflection.AssemblyProductAttribute("PVAcujeme")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PVAcujeme")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
