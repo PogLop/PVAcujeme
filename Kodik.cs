@@ -1,22 +1,3 @@
-// // 1) Client B generates RSA keys
-//
-// // 2) Client A generates AES key and encrypts it using Client B's public key
-// Client clientA = new Client();
-// var (encryptedAES, iv) = clientA.EncryptAESKey(clientB.publicKey);
-//
-// // 3) Client B decrypts AES key
-// clientB.ReceiveAESKey(encryptedAES, iv);
-//
-// // 4) Client B encrypts message using AES and sends it to A
-// string message = "Secret message: Hello Client A!";
-// byte[] encryptedMessage = clientB.EncryptMessage(message);
-//
-// // 5) Client A decrypts the message and prints it
-// string decrypted = clientA.DecryptMessage(encryptedMessage);
-//
-// Console.WriteLine("Message from Client B after decryption:");
-// Console.WriteLine(decrypted);
-
 namespace Program {
     public static class Program {
         public static void Main(string[] args)
@@ -33,9 +14,26 @@ namespace Program {
                 }
             }
 
-            User admin = db.users.Login("admin", "admin");
-            Client client = new Client(admin, false);
-            Console.WriteLine(Convert.ToBase64String(client.publicKey));
+            User u = db.users.Signin("user", "user");
+            User c = db.users.Signin("admin", "admin");
+            Client user;
+            Client admin;
+
+            if (u == null || c == null) {
+                u = db.users.Login("user", "user");
+                c = db.users.Login("admin", "admin");
+                user = new Client(u.uid, false);
+                admin = new Client(c.uid, false);
+            } else {
+                user = new Client(u.uid, false);
+                admin = new Client(c.uid, false);
+            }
+
+            var (key, iv) = admin.EncryptAESKey(Convert.FromBase64String(Repository.LoadKey(u.uid)));
+            user.ReceiveAESKey(key, iv);
+            byte[] encryptedMessage = admin.EncryptMessage("Hello World!");
+            string decryptedMessage = user.DecryptMessage(encryptedMessage);
+            Console.WriteLine(decryptedMessage);
         }
     }
 }
