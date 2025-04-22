@@ -1,8 +1,9 @@
 # PVAcujeme
 
-textextextextttt
+text
 
 ## Rozdělení úkolů
+<hr>
 
 **Matěj Šejvl**
 > README, tui, UI
@@ -21,7 +22,7 @@ textextextextttt
 
 
 **Prokop**
-> Magistr gitu
+> Magistr gitu, UI
 
 **Jonáš**
 > Back office manažer, HR
