@@ -6,7 +6,7 @@ namespace Program
         public string username;
         public string password;
 
-        public User(string username, string password, int uid)
+        public User(string username, string password, int uid=0)
         {
             this.username = username;
             this.password = password;

@@ -27,6 +27,12 @@ namespace Program
             return Convert.ToInt32(cmd.ExecuteScalar());
         }
 
+        public virtual void Drop()
+        {
+            cmd.CommandText = $"DROP TABLE {name};";
+            cmd.ExecuteNonQuery();
+        }
+
 
         public abstract T ParseReader(SQLiteDataReader reader);
         public virtual List<T> SelectAll(string condition="")
@@ -69,6 +75,25 @@ namespace Program
                 }
             }
             return null;
+        }
+
+        public User Login(string username, string password) {
+            User user = Select(username);
+
+            if (user != null && Auth.Verify(password, user.password)) {
+                return user;
+            }
+
+            return null;
+        }
+
+        public User Signin(string username, string password) {
+            try {
+                Insert(new User(username, Auth.Hash(password)));
+            } catch {
+                return null;
+            }
+            return Select(username);
         }
     }
 

@@ -1,5 +1,4 @@
 // // 1) Client B generates RSA keys
-// Client clientB = new Client(true);
 //
 // // 2) Client A generates AES key and encrypts it using Client B's public key
 // Client clientA = new Client();
@@ -20,9 +19,23 @@
 
 namespace Program {
     public static class Program {
-        public static void Main()
+        public static void Main(string[] args)
         {
             DB db = new DB();
+
+            if (args.Length > 2 && args[1] == "r") {
+                switch (args[2]) {
+                    case "users":
+                        db.users.Drop();
+                        return;
+                    default:
+                        break;
+                }
+            }
+
+            User admin = db.users.Login("admin", "admin");
+            Client client = new Client(admin);
+            byte[] publicKey = Convert.FromBase64String(Repository.LoadKey(admin.uid));
         }
     }
 }

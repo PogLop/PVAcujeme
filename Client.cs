@@ -5,6 +5,7 @@ using System.Text;
 namespace Program {
     class Client
     {
+        User user;
         // RSA
         public byte[] publicKey;
         private byte[] privateKey;
@@ -16,14 +17,23 @@ namespace Program {
         const int KEY_LENGTH = 2048;
         RSAEncryptionPadding PADDING = RSAEncryptionPadding.Pkcs1;
 
-        public Client(bool genKey=false)
+        public Client(User user, bool gen)
         {
-            if (genKey) {
+            this.user = user;
+            if (gen) {
                 using (var rsa = RSA.Create(KEY_LENGTH))
                 {
                     publicKey = rsa.ExportRSAPublicKey();
                     privateKey = rsa.ExportRSAPrivateKey();
                 }
+                Repository.SaveKey(user.uid, Convert.ToBase64String(publicKey));
+                Repository.SaveKey(user.uid, Convert.ToBase64String(privateKey), true);
+                return;
+            }
+            using (var rsa = RSA.Create(KEY_LENGTH))
+            {
+                this.publicKey = Convert.FromBase64String(Repository.LoadKey(user.uid));
+                this.privateKey = Convert.FromBase64String(Repository.LoadKey(user.uid, false));
             }
         }
 
