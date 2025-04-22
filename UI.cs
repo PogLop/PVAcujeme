@@ -1,8 +1,9 @@
 using System;
+using System.Timers;
 
 namespace UI
 {
-    class Stuff
+    public class Stuff
     {
         static int readMessages = 0;
         static int unreadMessages = 0;
@@ -11,42 +12,36 @@ namespace UI
         public static event EventHandler MessageRead;
         public static event EventHandler NewMessageReceived;
         public static event EventHandler ContactAdded;
-        
-        static Timer clockTimer;
 
-        static void Main(string[] args)
+        static System.Timers.Timer clockTimer;
+
+        public static void Init()
         {
             MessageRead += OnMessageRead;
             NewMessageReceived += OnNewMessageReceived;
             ContactAdded += OnContactAdded;
-            
-            clockTimer = new Timer(1000);
+
+            clockTimer = new System.Timers.Timer(1000);
             clockTimer.Elapsed += (s, e) => RenderStatusBar();
             clockTimer.Start();
-            
-            Console.WriteLine("Klávesy:\n[M] Nová zpráva\n[R] Přečíst zprávu\n[C] Přidat kontakt\n[Q] Konec\n");
-            
-            while (true)
-            {
-                var key = Console.ReadKey(true).Key;
+        }
 
-                switch (key)
-                {
-                    case ConsoleKey.M:
-                        NewMessageReceived?.Invoke(null, EventArgs.Empty);
-                        break;
-                    case ConsoleKey.R:
-                        MessageRead?.Invoke(null, EventArgs.Empty);
-                        break;
-                    case ConsoleKey.C:
-                        ContactAdded?.Invoke(null, EventArgs.Empty);
-                        break;
-                    case ConsoleKey.Q:
-                        return;
-                }
+        public static void ProcessKey(ConsoleKey key)
+        {
+            switch (key)
+            {
+                case ConsoleKey.M:
+                    NewMessageReceived?.Invoke(null, EventArgs.Empty);
+                    break;
+                case ConsoleKey.R:
+                    MessageRead?.Invoke(null, EventArgs.Empty);
+                    break;
+                case ConsoleKey.C:
+                    ContactAdded?.Invoke(null, EventArgs.Empty);
+                    break;
             }
         }
-        
+
         static void OnMessageRead(object sender, EventArgs e)
         {
             if (unreadMessages > 0)
@@ -69,7 +64,6 @@ namespace UI
             RenderStatusBar();
         }
 
-        // zobrazení stavového radku
         static void RenderStatusBar()
         {
             int currentLineCursor = Console.CursorTop;
@@ -85,15 +79,7 @@ namespace UI
             );
 
             Console.ResetColor();
-            Console.SetCursorPosition(0, currentLineCursor); 
-        }
-    }
-
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
+            Console.SetCursorPosition(0, currentLineCursor);
         }
     }
 }
