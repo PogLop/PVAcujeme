@@ -10,7 +10,7 @@ text
 
 
 **Marko Setler**
-> Tester
+> Tester (Unit testy)
 
 
 **Josh**
@@ -31,7 +31,10 @@ text
 > UI asistent
 
 **Saša**
-> Spravuje main
+> Spravuje funkci Main()
+
+**Filip Šťastný**
+> Tester (Unit testy)
 
 <hr>
 
