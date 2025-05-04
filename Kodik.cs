@@ -21,7 +21,7 @@ namespace Program {
     public static class Program {
         public static void Main(string[] args)
         {
-            DB db = new DB();
+            /*DB db = new DB();
 
             if (args.Length > 2 && args[1] == "r") {
                 switch (args[2]) {
@@ -35,7 +35,22 @@ namespace Program {
 
             User admin = db.users.Login("admin", "admin");
             Client client = new Client(admin);
-            byte[] publicKey = Convert.FromBase64String(Repository.LoadKey(admin.uid));
+            byte[] publicKey = Convert.FromBase64String(Repository.LoadKey(admin.uid));*/
+            
+            //  testing: tui.Choose
+            /*string[] opt = ["bruh", "heehee", "heehee2"];
+            string? x = Tui.Choose("titul", ref opt);
+            Console.WriteLine($"x: {x}");*/
+            
+            //  testing: tui.Form
+            Tui.FormField[] fields = new[] {
+                new Tui.FormField("string", Tui.FormFieldType.String), new Tui.FormField("int", Tui.FormFieldType.Int),
+                new Tui.FormField("double", Tui.FormFieldType.Double),
+                new Tui.FormField("bool", Tui.FormFieldType.Boolean) };
+            
+            bool ret = Tui.Form("title", ref fields);
+            Console.WriteLine($"returned: {ret}");
+
         }
     }
 }
