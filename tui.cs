@@ -5,10 +5,17 @@ using System;
 
 public static class Tui {
 	
+	public static bool IsPrintable(char c)
+	{
+		return c >= 32 && c <= 126;
+	}
+	
 	//	Methods to be used in Terminal User Interface
 	
 	public static string? Choose(string title, ref string[] options)
 	{
+		///	necha uzivatele vybrat, co chce delat
+		/// vrati options[selected] jako string
 
 		string? ret = null;
 		int selector = 0;
@@ -97,16 +104,19 @@ public static class Tui {
 		return ret;
 	}
 
-	public enum FormFieldType {
+	public enum FormFieldType
+	{
 		String,
 		Int,
 		Double,
 		Boolean,
 	}
 	
-	public struct FormField {
+	public struct FormField
+	{
 
-		public FormField(string name, FormFieldType type) {
+		public FormField(string name, FormFieldType type)
+		{
 			this.Value = null;
 			this.Name = new string(name);
 			this.Type = type;
@@ -118,50 +128,93 @@ public static class Tui {
 		public string Name { get; private set; }
 		public string? Value { get; set; }
 
-		public int Len() {
+		public int Len()
+		{
 			return this.Name.Length + 2 /*": "*/ + ((this.Value != null)? this.Value.Length : 0);
 		}
 
-		public bool Check() {
-			if (this.Value == null) {
+		public bool Check()
+		{
+			if (this.Value == null)
+			{
 				return false;
 			}
 
-			switch (this.Type) {
-				case FormFieldType.String: {
+			switch (this.Type)
+			{
+				case FormFieldType.String:
+				{
 					return true;
 				}
-				case FormFieldType.Int: {
-					try {
-						Convert.ToInt64()
+				case FormFieldType.Int:
+				{
+					try
+					{
+						Convert.ToInt64(this.Value);
 					}
-					catch (Exception) {
+					catch (Exception)
+					{
 						return false;
 					}
+
+					return true;
+				}
+				case FormFieldType.Double:
+				{
+					try
+					{
+						Convert.ToDouble(this.Value);
+					}
+					catch (Exception)
+					{
+						return false;
+					}
+					return true;
+				}
+				case FormFieldType.Boolean:
+				{
+					string val = this.Value.ToLower();
+					return val == "yes" || val == "no";
+				}
+				default:
+				{
+					return false;
 				}
 			}
-			
 		}
 		
-		public T? Into<T>() {
+		public T? Into<T>()
+		{
 
-			if (this.Value == null) {
+			if (this.Value == null)
+			{
 				throw new NullReferenceException();
 			}
-			if (typeof(T) == typeof(string)) {
-				if (this.Type == FormFieldType.String) {
+			if (typeof(T) == typeof(string))
+			{
+				if (this.Type == FormFieldType.String)
+				{
 					return (T)((object)this.Value);
 				}
-			} else if (typeof(T) == typeof(int)) {
-				if (this.Type == FormFieldType.Int) {
+			}
+			else if (typeof(T) == typeof(int))
+			{
+				if (this.Type == FormFieldType.Int)
+				{
 					return (T)((object)System.Convert.ToInt64(this.Value));
 				}
-			} else if (typeof(T) == typeof(double)) {
-				if (this.Type == FormFieldType.Double) {
+			}
+			else if (typeof(T) == typeof(double))
+			{
+				if (this.Type == FormFieldType.Double)
+				{
 					return (T)((object)System.Convert.ToDouble(this.Value));
 				}
-			} else if (typeof(T) == typeof(bool)) {
-				if (this.Type == FormFieldType.Boolean) {
+			}
+			else if (typeof(T) == typeof(bool))
+			{
+				if (this.Type == FormFieldType.Boolean)
+				{
 					return (T)((object)System.Convert.ToBoolean(this.Value));
 				}
 			}
@@ -173,7 +226,11 @@ public static class Tui {
 	}
 
 
-	public static bool Form(string title, ref FormField[] options) {
+	public static bool Form(string title, ref FormField[] options)
+	{
+		///	necha uzivatele vlozit data do FormField a vrati bool jestli vlozeni bylo uspesne
+		/// kdyz vraci false, nastala chyba na strane uzivatele
+		
 		string done = new string("done");
 		string exit = new string("exit");
 
@@ -182,7 +239,8 @@ public static class Tui {
 		int longest = options.Max(o => o.Len());
 		ConsoleKeyInfo ki = new ConsoleKeyInfo();
 
-		do {
+		do
+		{
 			
 			Console.ResetColor();
 
@@ -208,21 +266,36 @@ public static class Tui {
 
 
 			//	print options
-			for (int i = 0; i < options.Length + 2; i++) {
+			for (int i = 0; i < options.Length + 2; i++)
+			{
 				Console.ResetColor();
-				if (selector != i) {
+				if (selector == i)
+				{
+					Console.ForegroundColor = ConsoleColor.White;
+				}
+				else
+				{
 					Console.ForegroundColor = ConsoleColor.DarkGray;
 				}
-				if (i < options.Length) {
+				if (i < options.Length)
+				{
+					if ((options[i].Err) && (selector != i))
+					{
+						Console.ForegroundColor = ConsoleColor.Red;
+					}
 					Console.SetCursorPosition((Console.BufferWidth / 2) - (options[i].Len() / 2), 3 + i);
 
-					Console.WriteLine($"{options[i].Name}: {options[i].Value}");
+					Console.WriteLine($"{options[i].Name}: {options[i].Value} | {options[i].Err}");
 				}
-				else {
-					if (i == options.Length) {
+				else
+				{
+					if (i == options.Length)
+					{
 						Console.SetCursorPosition((Console.BufferWidth/2) - (done.Length/2), 3 + i);
 						Console.WriteLine(done);
-					} else {
+					}
+					else
+					{
 						Console.SetCursorPosition((Console.BufferWidth/2) - (exit.Length/2), 3 + i);
 						Console.WriteLine(exit);
 					}
@@ -231,22 +304,27 @@ public static class Tui {
 			
 			ki = Console.ReadKey(false);
 
-			switch (ki.Key) {
-				case ConsoleKey.Enter: {
-					if (selector < options.Length) {
+			switch (ki.Key)
+			{
+				case ConsoleKey.Enter:
+				{
+					if (selector < options.Length)
+					{
 						ref var opt = ref options[selector];
-						if (opt.Type == FormFieldType.Boolean) {
-							if (opt.Value == null || opt.Value != "no") {
+						if (opt.Type == FormFieldType.Boolean)
+						{
+							if (opt.Value == null || opt.Value != "no")
+							{
 								opt.Value = new string("no");
 							}
-							else {
+							else
+							{
 								opt.Value = new string("yes");
 							}
-						}
-						else {
+						} else {
 
-							try {
-								options[selector].Into<>()
+							if (selector < options.Length) {
+								options[selector].Err = !options[selector].Check();
 							}
 							
 							selector++;
@@ -254,13 +332,25 @@ public static class Tui {
 								selector = 0;
 							}
 						}
-					}
-					else {
-						return selector == options.Length;
+					} else {
+						if (selector == options.Length) {
+							foreach (var i in options) {
+								if (i.Err) {
+									return false;
+								}
+							}
+
+							return true;
+						}
+
+						return false;
 					}
 					break;
 				}
 				case ConsoleKey.DownArrow: {
+					if (selector < options.Length) {
+						options[selector].Err = !options[selector].Check();
+					}
 					selector++;
 					if (selector >= options.Length + 2) {
 						selector = 0;
@@ -269,6 +359,10 @@ public static class Tui {
 					break;
 				}
 				case ConsoleKey.UpArrow: {
+					if (selector < options.Length) {
+						options[selector].Err = !options[selector].Check();
+					}
+
 					selector--;
 					if (selector < 0) {
 						selector = options.Length + 1;
@@ -276,15 +370,28 @@ public static class Tui {
 					break;
 				}
 				default: {
-					if (selector < options.Length) {
-						ref var opt = ref options[selector];
-						if (opt.Type != FormFieldType.Boolean) {
-							if (opt.Value == null) {
-								opt.Value = new string($"{ki.KeyChar}");
-							}
-							else {
-								opt.Value += ki.KeyChar;
-							}
+					if (selector >= options.Length) {
+						break;
+					}
+
+					ref var opt = ref options[selector];
+					if (opt.Type == FormFieldType.Boolean) {
+						break;
+					}
+
+					if (opt.Value == null) {
+						opt.Value = new string("");
+					}
+
+					if (ki.Key == ConsoleKey.Backspace) {
+						if (opt.Value.Length == 0) {
+							opt.Value = null;
+						} else {
+							opt.Value = opt.Value.Substring(0, opt.Value.Length - 1);
+						}
+					} else {
+						if (IsPrintable(ki.KeyChar)) {
+							opt.Value += ki.KeyChar;
 						}
 					}
 					break;
