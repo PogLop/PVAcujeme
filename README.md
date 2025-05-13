@@ -6,35 +6,32 @@ text
 <hr>
 
 **Matěj Šejvl**
-> README, tui, UI
+> UI dev
 
 
 **Marko Setler**
-> Tester (Unit testy)
-
+> Tester
 
 **Josh**
 > Hlavní Porgrmátor, logika, Git
 
-
 **Mario**
 > Autentizace
 
-
 **Prokop**
-> Magistr gitu, UI
+> Magistr gitu, UI, magistr všeho koneckonců
 
 **Jonáš**
 > Back office manažer, HR
 
 **Janek**
-> UI asistent
+> UI dev asistent + josh asistent
 
 **Saša**
-> Spravuje funkci Main()
+> Spravuje funkci main() (???)
 
-**Filip Šťastný**
-> Tester (Unit testy)
+**FILIP (zavri flko more)**
+> UI dev
 
 <hr>
 
