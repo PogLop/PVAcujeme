@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "/Users/poklop/RiderProjects/PVAcujeme/PVAcujeme.csproj": {}
   },
   "projects": {
@@ -15,6 +16,22 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/poklop/.nuget/NuGet/NuGet.Config"
+=======
+    "/Users/sam/docs/skola/pva/pvacujeme/PVAcujeme/PVAcujeme.csproj": {}
+  },
+  "projects": {
+    "/Users/sam/docs/skola/pva/pvacujeme/PVAcujeme/PVAcujeme.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/sam/docs/skola/pva/pvacujeme/PVAcujeme/PVAcujeme.csproj",
+        "projectName": "PVAcujeme",
+        "projectPath": "/Users/sam/docs/skola/pva/pvacujeme/PVAcujeme/PVAcujeme.csproj",
+        "packagesPath": "/Users/sam/.nuget/packages/",
+        "outputPath": "/Users/sam/docs/skola/pva/pvacujeme/PVAcujeme/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/sam/.nuget/NuGet/NuGet.Config"
+>>>>>>> origin/matysek
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -37,7 +54,12 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
+<<<<<<< HEAD
         }
+=======
+        },
+        "SdkAnalysisLevel": "9.0.200"
+>>>>>>> origin/matysek
       },
       "frameworks": {
         "net9.0": {
@@ -68,7 +90,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "/Users/poklop/.dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "/Users/sam/.dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
+>>>>>>> origin/matysek
         }
       }
     }

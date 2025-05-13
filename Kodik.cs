@@ -2,6 +2,7 @@ namespace Program {
     public static class Program {
         public static void Main(string[] args)
         {
+<<<<<<< HEAD
             DB db = new DB();
 
             if (args.Length > 2 && args[1] == "r") {
@@ -34,6 +35,8 @@ namespace Program {
             byte[] encryptedMessage = admin.EncryptMessage("Hello World!");
             string decryptedMessage = user.DecryptMessage(encryptedMessage);
             Console.WriteLine(decryptedMessage);
+=======
+>>>>>>> origin/matysek
         }
     }
 }
