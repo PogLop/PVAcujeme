@@ -285,7 +285,7 @@ public static class Tui {
 					}
 					Console.SetCursorPosition((Console.BufferWidth / 2) - (options[i].Len() / 2), 3 + i);
 
-					Console.WriteLine($"{options[i].Name}: {options[i].Value} | {options[i].Err}");
+					Console.WriteLine($"{options[i].Name}: {options[i].Value}");
 				}
 				else
 				{
